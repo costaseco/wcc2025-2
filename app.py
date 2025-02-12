@@ -3,22 +3,25 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+cities = []
 
 @app.route('/', methods=['GET'])
 def index():
     city = 'Cascais'
     data = get_weather_by_location(city)
-    return render_template('index.html', city=city, weather=data)
+    return render_template('index.html', city=city, weather=data, cities=cities)
 
 @app.route('/', methods=['POST'])
 def index_post():
     city = request.form['city']
+    cities.append(city)
     return index_by_city(city)
 
 @app.route('/weather/<city>')
 def index_by_city(city):
     data = get_weather_by_location(city)
-    return render_template('index.html', city=city, weather=data)
+    return render_template('index.html', city=city, weather=data, cities=cities)
+
 
 def get_weather():
     url = 'https://api.open-meteo.com/v1/forecast?latitude=38.67&longitude=-9.32&current_weather=true&hourly=precipitation,cloudcover,winddirection_10m,apparent_temperature,temperature_2m,relativehumidity_2m,windspeed_10m'

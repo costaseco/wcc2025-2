@@ -37,5 +37,12 @@
         {% endfor %}
     </ul>
 </section>
+<section>
+    <ul>
+    {% for city in cities %}
+        <li><a href="/weather/{{city}}">{{city}}</a></li>
+    {% endfor %}
+    </ul>
+</section>
 </body>
 </html>
