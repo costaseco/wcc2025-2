@@ -1,14 +1,6 @@
 import requests
 
-# This module takes care of application logic, independent from the client applications.
-
-
-cities = []
-
-def add_city(city):
-    cities.append(city)
-
-# In a bigger scale, a new module may be created to interface with other services
+# This module takes care of application logic, independent of the client applications.
 
 # Orchestration of other services
 def get_weather_in_city(city):
