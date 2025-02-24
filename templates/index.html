@@ -30,9 +30,9 @@
         {% for idx in range(20) %}
         <li class="houritem">
             <div>{{ weather['time'][idx][11:] }}</div>
-            <div>{{ weather['cloudcover'][idx] }}%</div>
-            <div>{{ weather['temperature_2m'][idx] }} ºC</div>
-            <div>{{ weather['precipitation'][idx] }}mm</div>
+            <div>{{ weather['cloudcover'][idx] }}{{ units['cloudcover']}}</div>
+            <div>{{ weather['temperature_2m'][idx] }}{{ units['temperature_2m']}}</div>
+            <div>{{ weather['precipitation'][idx] }}{{ units['precipitation']}}</div>
         </li>
         {% endfor %}
     </ul>

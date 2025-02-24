@@ -13,7 +13,7 @@ def get_weather_by_location(lat, long):
     url = f'https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={long}&current_weather=true&hourly={fields}'
     response = requests.get(url)
     data = response.json()
-    return data['hourly']
+    return data['hourly'], data['hourly_units']
 
 # Access to openstreetmaps service
 def get_location(city):

@@ -11,8 +11,8 @@ def index():
     if cities == []:
         cities = ['Cascais']
     city = cities[0]
-    data = get_weather_in_city(city)
-    response = make_response(render_template('index.html', city=city, weather=data, cities=cities))
+    data, units = get_weather_in_city(city)
+    response = make_response(render_template('index.html', city=city, units=units, weather=data, cities=cities))
     response.set_cookie('cities', json.dumps(cities, indent=4))
     return response
 
@@ -21,8 +21,8 @@ def index_post():
     cities = json.loads(request.cookies.get('cities', '[]'))
     city = request.form['city']
     cities.append(city)
-    data = get_weather_in_city(city)
-    response = make_response(render_template('index.html', city=city, weather=data, cities=cities))
+    data, units = get_weather_in_city(city)
+    response = make_response(render_template('index.html', city=city, units=units, weather=data, cities=cities))
     response.set_cookie('cities', json.dumps(cities, indent=4))
     return response
 
@@ -30,8 +30,8 @@ def index_post():
 @app.route('/weather/<city>')
 def index_by_city(city):
     cities = json.loads(request.cookies.get('cities', '[]'))
-    data = get_weather_in_city(city)
-    return render_template('index.html', city=city, weather=data, cities=cities)
+    data, units = get_weather_in_city(city)
+    return render_template('index.html', city=city, units=units, weather=data, cities=cities)
 
 if __name__ == '__main__':
     app.run()
